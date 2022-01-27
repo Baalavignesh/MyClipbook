@@ -1,0 +1,60 @@
+.inputarea {
+  display: flex;
+  justify-content: center;
+  margin: 12px 0px;
+}
+
+.input-component {
+  border: 1px solid black;
+  border-radius: 6px;
+  width: 50%;
+  margin: 12px 24px;
+  display: grid;
+  align-items: center;
+  background-color: white;
+  box-shadow: 0 0 8px 0px rgba(158, 158, 158, 0.3);
+}
+
+.general-input {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 6px;
+  font-family: "Nunito", sans-serif;
+  background-color: #fff;
+  resize: none;
+}
+
+.content-input {
+  font-weight: 400;
+}
+
+.title-input {
+  font-size: 16px;
+  font-weight:600;
+}
+
+.input-done-icon {
+  /* margin: 12px; */
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+}
+
+.close-button {
+  border: none;
+  box-shadow: 0 0 10px 0 rgba(179, 179, 179, 0.1);
+  background-color: white;
+  padding: 0.6rem;
+  margin: 8px;
+  border-radius: 6px;
+}
+
+.close-button:hover {
+  box-shadow: 0 0 10px 0 rgba(122, 122, 122, 0.2);
+  cursor: pointer;
+}
+
+
