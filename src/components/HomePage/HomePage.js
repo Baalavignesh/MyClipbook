@@ -8,6 +8,7 @@ import { uid } from "uid";
 import { useParams } from "react-router-dom";
 import CheckRoute from "../../firebase/CheckRoute";
 import AddData from "../../firebase/AddData";
+import "./HomePage.styles.css";
 
 function HomePage() {
   let [allClipboard, setClipboard] = useState(null);
@@ -16,7 +17,6 @@ function HomePage() {
   let { id } = useParams();
 
   useEffect(() => {
-    console.log("main use Effect");
     let uniqueID = uid();
 
     if (id) {
@@ -25,7 +25,7 @@ function HomePage() {
 
     const fetchData = async () => {
       const result = await CheckRoute(uniqueID, allClipboard);
-      console.log("set clipboard calledd");
+
       setClipboard(result);
       setLoading(false);
     };
@@ -34,7 +34,6 @@ function HomePage() {
   }, [id]);
 
   useEffect(() => {
-    console.log("add data use effect");
     if (allClipboard !== null) {
       AddData(id, allClipboard);
     }
@@ -48,14 +47,12 @@ function HomePage() {
   }
 
   function updateClipBoard(updatedData) {
-    console.log("updating clipboard");
     setClipboard(updatedData);
 
     // AddData(id, allClipboard);
   }
 
   function deleteClipboard(id) {
-    console.log("deleting clipboard");
     setClipboard((prev) => {
       return allClipboard.filter((item, index) => {
         return index !== id;
@@ -64,18 +61,20 @@ function HomePage() {
   }
 
   return (
-    <div>
+    <div className="totalpage">
       {!loading && (
-        <div>
+        <>
           <Header />
-          <InputArea addBoard={addClipboard} />
-          <Clipboard
-            allBoard={allClipboard}
-            updateClipboard={updateClipBoard}
-            deleteClipboard={deleteClipboard}
-          />
+          <div className="expanding-div">
+            <InputArea addBoard={addClipboard} />
+            <Clipboard
+              allBoard={allClipboard}
+              updateClipboard={updateClipBoard}
+              deleteClipboard={deleteClipboard}
+            />
+          </div>
           <Footer />
-        </div>
+        </>
       )}
     </div>
   );

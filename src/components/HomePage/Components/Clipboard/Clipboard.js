@@ -15,8 +15,11 @@ import "./Clipboard.styles.css";
 import { makeStyles } from "@mui/styles";
 
 const useStyles = makeStyles({
-  root: {
-    padding: "10px 12px !important",
+  title: {
+    padding: "24px 12px 4px 28px !important",
+  },
+  content: {
+    padding: "0px 12px 0px 28px !important",
   },
   dialogShadow: {
     boxShadow: "0 1px 3px 0 rgb(0 0 0 / 60%), 0 4px 8px 3px rgb(0 0 0 / 30%)",
@@ -113,19 +116,20 @@ function Clipboard(props) {
         scroll="paper"
         classes={{ root: classes.dialogShadow }}
       >
-        <DialogTitle className="dialogColor" classes={{ root: classes.root }}>
+        <DialogTitle className="dialogColor" classes={{ root: classes.title }}>
           <TextareaAutosize
             placeholder="Title"
-            className="general-input title-input"
+            className="c-general-input c-title-input"
             name="title"
+            style={{ width: 500 }}
             onChange={inputHandle}
             value={NewNoteData.title}
           ></TextareaAutosize>
         </DialogTitle>
-        <DialogContent className="dialogColor" classes={{ root: classes.root }}>
+        <DialogContent className="dialogColor" classes={{ root: classes.content }}>
           <DialogContentText>
             <TextareaAutosize
-              className="general-input content-input"
+              className="c-general-input c-content-input"
               placeholder="Take a note..."
               style={{ width: 500 }}
               name="content"
