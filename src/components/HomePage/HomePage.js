@@ -10,13 +10,13 @@ import CheckRoute from "../../firebase/CheckRoute";
 import AddData from "../../firebase/AddData";
 
 function HomePage() {
-  let [allClipboard, setClipboard] = useState([]);
+  let [allClipboard, setClipboard] = useState(null);
 
   let [loading, setLoading] = useState(true);
   let { id } = useParams();
 
   useEffect(() => {
-    console.log("home page");
+    console.log("main use Effect");
     let uniqueID = uid();
 
     if (id) {
@@ -25,6 +25,7 @@ function HomePage() {
 
     const fetchData = async () => {
       const result = await CheckRoute(uniqueID, allClipboard);
+      console.log("set clipboard calledd");
       setClipboard(result);
       setLoading(false);
     };
@@ -32,19 +33,25 @@ function HomePage() {
     fetchData();
   }, [id]);
 
+  useEffect(() => {
+    console.log("add data use effect");
+    if (allClipboard !== null) {
+      AddData(id, allClipboard);
+    }
+  }, [allClipboard]);
+
   function addClipboard(noteData) {
     setClipboard((prev) => {
+      prev = prev ? prev : [];
       return [...prev, noteData];
     });
-
-    AddData(id, allClipboard);
   }
 
   function updateClipBoard(updatedData) {
     console.log("updating clipboard");
     setClipboard(updatedData);
 
-    AddData(id, allClipboard);
+    // AddData(id, allClipboard);
   }
 
   function deleteClipboard(id) {

@@ -1,7 +1,6 @@
 import {
   Button,
   Dialog,
-  DialogActions,
   DialogContent,
   DialogContentText,
   DialogTitle,
@@ -64,7 +63,7 @@ function Clipboard(props) {
   const handleCloseDialog = () => {
     let allBoard = [...props.allBoard];
 
-    if (NewNoteData.title == "" && NewNoteData.content == "") {
+    if (NewNoteData.title === "" && NewNoteData.content === "") {
       props.deleteClipboard();
     } else {
       allBoard[currentNote] = NewNoteData;
@@ -86,22 +85,25 @@ function Clipboard(props) {
         className="my-masonry-grid"
         columnClassName="my-masonry-grid_column"
       >
-        {props.allBoard.map((clip, index) => {
-          return (
-            <div
-              className="singleClipboard"
-              key={index}
-              onClick={() => {
-                handleOpenDialog(index);
-              }}
-            >
-              <div className="clipboard-text clipboard-title">{clip.title}</div>
-              <div className="clipboard-text clipboard-content">
-                {clip.content}
+        {props.allBoard &&
+          props.allBoard.map((clip, index) => {
+            return (
+              <div
+                className="singleClipboard"
+                key={index}
+                onClick={() => {
+                  handleOpenDialog(index);
+                }}
+              >
+                <div className="clipboard-text clipboard-title">
+                  {clip.title}
+                </div>
+                <div className="clipboard-text clipboard-content">
+                  {clip.content}
+                </div>
               </div>
-            </div>
-          );
-        })}
+            );
+          })}
       </Masonry>
       <Dialog
         open={openDialog}
